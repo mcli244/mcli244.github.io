@@ -6,24 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>test | 小李sy的个人博客</title>
+  <title>linux字符驱动 | 小李sy的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="test">
+  <meta name="description" content="简介：linux字符驱动，介绍了在linux中的如何编写一个字符设备驱动。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="test">
-<meta property="og:url" content="http://yoursite.com/2020/04/08/test/index.html">
+<meta property="og:title" content="linux字符驱动">
+<meta property="og:url" content="http://yoursite.com/2018/02/01/imx6ull-beep-driver/index.html">
 <meta property="og:site_name" content="小李sy的个人博客">
-<meta property="og:description" content="test">
+<meta property="og:description" content="简介：linux字符驱动，介绍了在linux中的如何编写一个字符设备驱动。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-04-08T14:26:57.396Z">
-<meta property="article:modified_time" content="2020-04-08T14:39:12.358Z">
+<meta property="article:published_time" content="2018-02-01T09:44:18.000Z">
+<meta property="article:modified_time" content="2020-04-19T14:30:53.529Z">
 <meta property="article:author" content="小李sy的博客">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="imx6ull">
+<meta property="article:tag" content="char_device">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="小李sy的个人博客" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="/assets/timg.jpg">
   
   <link rel="stylesheet" type="text/css" href="/./main.0cf68a.css">
   <style type="text/css">
@@ -47,7 +50,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="" class="js-avatar">
+			<img src="/assets/timg.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">小李sy的博客</a></h1>
@@ -59,7 +62,11 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+				<li><a href="/tags/">目录</a></li>
+	        
+				<li><a href="/archives">归档</a></li>
+	        
+				<li><a href="/categories">分类</a></li>
 	        
 			</ul>
 		</nav>
@@ -105,13 +112,17 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="" class="js-avatar">
+				<img src="/assets/timg.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">小李sy的博客</h1>
 			</hgroup>
 			
 			
+			
+				
+			
+				
 			
 				
 			
@@ -134,12 +145,16 @@
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
+					<li style="width: 25%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+					<li style="width: 25%"><a href="/tags/">目录</a></li>
+		        
+					<li style="width: 25%"><a href="/archives">归档</a></li>
+		        
+					<li style="width: 25%"><a href="/categories">分类</a></li>
 		        
 				</ul>
 			</nav>
@@ -154,27 +169,41 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-test" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-imx6ull-beep-driver" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      test
+      linux字符驱动
     </h1>
   
 
         
-        <a href="/2020/04/08/test/" class="archive-article-date">
-  	<time datetime="2020-04-08T14:26:57.396Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-08</time>
+        <a href="/2018/02/01/imx6ull-beep-driver/" class="archive-article-date">
+  	<time datetime="2018-02-01T09:44:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-01</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>test</p>
+        <p>简介：linux字符驱动，介绍了在linux中的如何编写一个字符设备驱动。</p>
+<a id="more"></a>
+
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>​    <strong>硬件</strong>：正点原子埃尔法开发板 imx6ull<br>​    <strong>编译器：</strong>arm-linux-gnueabihf-gcc (gcc version 4.9.4 (Linaro GCC 4.9-2017.01))</p>
+<hr>
+<h2 id="框图"><a href="#框图" class="headerlink" title="框图"></a>框图</h2><p>![12](E:\workspace\资料\i.MX6UL 嵌入式Linux应用程序开发手册\字符驱动示意图.png)</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>字符驱动代码beep.c</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/init.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/module.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/fs.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/device.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;asm/uaccess.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;asm/io.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/slab.h&gt; </span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 物理地址 */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CCM_CCGR1					0x020C406C</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> IOMUXC_TAMPER1_GPIO5_IO01	0x0229000C</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> IOMUXC_TAMPER1_CONFIG		0x02290050</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> GPIO5_DR					0x020AC000</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> GPIO5_GDIR					0x020AC004</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 虚拟地址 */</span></span><br><span class="line"><span class="keyword">uint32_t</span> *p_ccm_ccgr1;</span><br><span class="line"><span class="keyword">uint32_t</span> *p_io_muxc;</span><br><span class="line"><span class="keyword">uint32_t</span> *p_io_config;</span><br><span class="line"><span class="keyword">uint32_t</span> *p_gpio5_dr;</span><br><span class="line"><span class="keyword">uint32_t</span> *p_gpio5_dir;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// beep设备</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">beep_desc</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> dev_major;				<span class="comment">// 主设备号</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">class</span> *<span class="title">my_class</span>;</span>		</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">device</span> *<span class="title">dev</span>;</span></span><br><span class="line">	<span class="keyword">void</span> *reg_base;				<span class="comment">// 映射后的虚拟地址的起始地址</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">struct</span> <span class="title">beep_desc</span> *<span class="title">beep_dev</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">beep_open</span><span class="params">(struct inode * inode, struct file *file)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	printk(<span class="string">"beep_open\n"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">ssize_t</span> <span class="title">beep_write</span><span class="params">(struct file * file, <span class="keyword">const</span> <span class="keyword">char</span> __user *buf, <span class="keyword">size_t</span> cnt, <span class="keyword">loff_t</span> * fnum)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ker_value = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> ret;</span><br><span class="line"></span><br><span class="line">	printk(<span class="string">"beep_write\n"</span>);</span><br><span class="line">	ret = copy_from_user(&amp;ker_value, buf, cnt);</span><br><span class="line">	<span class="keyword">if</span>(ret &gt; <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		printk(<span class="string">"copy_from_user fail\n"</span>);</span><br><span class="line">		<span class="keyword">return</span> -EFAULT;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	printk(<span class="string">"vlue:%d\n"</span>, ker_value);</span><br><span class="line">	<span class="keyword">if</span>(ker_value)&#123;</span><br><span class="line">		writel(readl(p_gpio5_dr) | (<span class="number">1</span>&lt;&lt;<span class="number">1</span>), p_gpio5_dr);		<span class="comment">// GPIO5_IO01输出高 beep不响</span></span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		writel(readl(p_gpio5_dr) &amp; ~(<span class="number">1</span>&lt;&lt;<span class="number">1</span>), p_gpio5_dr);	<span class="comment">// GPIO5_IO01输出低 beep响</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="class"><span class="keyword">struct</span> <span class="title">file_operations</span> <span class="title">dev_beep</span> = &#123;</span></span><br><span class="line">	.<span class="built_in">write</span>= beep_write,</span><br><span class="line">	.<span class="built_in">open</span> = beep_open,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> __init <span class="title">beep_drv_init</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ret;</span><br><span class="line">	u32 val = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	printk(<span class="string">"----------%s---------\n"</span>, __FUNCTION__);</span><br><span class="line">	beep_dev = kmalloc(<span class="keyword">sizeof</span>(struct beep_desc), GFP_KERNEL);	<span class="comment">// 分配一段连续的内存空间</span></span><br><span class="line">	<span class="keyword">if</span>(beep_dev == <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		printk(<span class="string">"kmalloc fail\n"</span>);</span><br><span class="line">		<span class="keyword">return</span> -ENOMEM;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 注册一个字符驱动</span></span><br><span class="line">	beep_dev-&gt;dev_major = register_chrdev(<span class="number">0</span>, <span class="string">"beep_device"</span>, &amp;dev_beep);</span><br><span class="line">	<span class="keyword">if</span>(beep_dev-&gt;dev_major  &lt; <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		printk(<span class="string">"register_chrdev fail\n"</span>);</span><br><span class="line">		<span class="keyword">goto</span> err_0;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 创建节点 /dev/my_beep</span></span><br><span class="line">	beep_dev-&gt;my_class = class_create(THIS_MODULE, <span class="string">"my_beep"</span>);</span><br><span class="line">	<span class="keyword">if</span>(IS_ERR(beep_dev-&gt;my_class))</span><br><span class="line">	&#123;</span><br><span class="line">		printk(KERN_ERR <span class="string">"class_create fail\n"</span>);</span><br><span class="line">		ret = PTR_ERR(beep_dev-&gt;my_class);	<span class="comment">// 出错原因转为一个具体的错误码</span></span><br><span class="line">		<span class="keyword">goto</span> err_1;</span><br><span class="line">	&#125;</span><br><span class="line">	beep_dev-&gt;dev = device_create(beep_dev-&gt;my_class, <span class="literal">NULL</span>, MKDEV(beep_dev-&gt;dev_major, <span class="number">0</span>), <span class="literal">NULL</span>, <span class="string">"my_beep"</span>);		</span><br><span class="line">	<span class="keyword">if</span>(IS_ERR(beep_dev-&gt;dev))</span><br><span class="line">	&#123;</span><br><span class="line">		printk(KERN_ERR <span class="string">"device_create fail\n"</span>);</span><br><span class="line">		ret = PTR_ERR(beep_dev-&gt;dev);	<span class="comment">// 出错原因转为一个具体的错误码</span></span><br><span class="line">		<span class="keyword">goto</span> err_2;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* 硬件相关操作 */</span></span><br><span class="line">	p_ccm_ccgr1 = ioremap(CCM_CCGR1, <span class="number">4</span>);</span><br><span class="line">	p_io_muxc 	= ioremap(IOMUXC_TAMPER1_GPIO5_IO01, <span class="number">4</span>);</span><br><span class="line">	p_io_config = ioremap(IOMUXC_TAMPER1_CONFIG, <span class="number">4</span>);</span><br><span class="line">	p_gpio5_dr 	= ioremap(GPIO5_DR, <span class="number">4</span>);</span><br><span class="line">	p_gpio5_dir = ioremap(GPIO5_GDIR, <span class="number">4</span>);</span><br><span class="line"></span><br><span class="line">	writel(readl(p_ccm_ccgr1) | (<span class="number">3</span>&lt;&lt;<span class="number">30</span>), p_ccm_ccgr1);	<span class="comment">// 使能GPIO5的时钟</span></span><br><span class="line">	writel(<span class="number">0x5</span>, p_io_muxc);			<span class="comment">// 复用为GPIO5_IO01</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/* 2、、配置GPIO5_IO01的IO属性	</span></span><br><span class="line"><span class="comment">	 *bit 16:0 HYS关闭</span></span><br><span class="line"><span class="comment">	 *bit [15:14]: 00 默认下拉</span></span><br><span class="line"><span class="comment">	 *bit [13]: 0 kepper功能</span></span><br><span class="line"><span class="comment">	 *bit [12]: 1 pull/keeper使能</span></span><br><span class="line"><span class="comment">	 *bit [11]: 0 关闭开路输出</span></span><br><span class="line"><span class="comment">	 *bit [7:6]: 10 速度100Mhz</span></span><br><span class="line"><span class="comment">	 *bit [5:3]: 110 R0/6驱动能力</span></span><br><span class="line"><span class="comment">	 *bit [0]: 0 低转换率</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	writel(<span class="number">0X10B0</span>, p_io_config);	</span><br><span class="line">	writel(readl(p_gpio5_dir) | (<span class="number">1</span>&lt;&lt;<span class="number">1</span>), p_gpio5_dir);	<span class="comment">// GPIO5_IO01为输出</span></span><br><span class="line">	writel(readl(p_gpio5_dr) | (<span class="number">1</span>&lt;&lt;<span class="number">1</span>), p_gpio5_dir);	<span class="comment">// GPIO5_IO01输出高 beep不响</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 错误处理</span></span><br><span class="line">err_2:</span><br><span class="line">	class_destroy(beep_dev-&gt;my_class);</span><br><span class="line">	</span><br><span class="line">err_1:</span><br><span class="line">	unregister_chrdev(beep_dev-&gt;dev_major, <span class="string">"beep_device"</span>);</span><br><span class="line"></span><br><span class="line">err_0:</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> __exit <span class="title">beep_drv_exit</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	printk(<span class="string">"----------%s---------\n"</span>, __FUNCTION__);</span><br><span class="line">	iounmap(p_ccm_ccgr1);</span><br><span class="line">	iounmap(p_io_muxc);</span><br><span class="line">	iounmap(p_io_config);</span><br><span class="line">	iounmap(p_gpio5_dr);</span><br><span class="line">	iounmap(p_gpio5_dir);</span><br><span class="line">	device_destroy(beep_dev-&gt;my_class, MKDEV(beep_dev-&gt;dev_major, <span class="number">0</span>));</span><br><span class="line">	class_destroy(beep_dev-&gt;my_class);</span><br><span class="line">	unregister_chrdev(beep_dev-&gt;dev_major, <span class="string">"beep_device"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">module_init(beep_drv_init);</span><br><span class="line">module_exit(beep_drv_exit);</span><br><span class="line">MODULE_LICENSE(<span class="string">"GPL"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>Makefile</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">KERNELDIR := /home/mcli/linux/imx6ull/kernel</span><br><span class="line"></span><br><span class="line">CURRENT_PATH := <span class="variable">$(<span class="built_in">shell</span> pwd)</span></span><br><span class="line">TARGET = beep</span><br><span class="line"></span><br><span class="line">obj-m := <span class="variable">$(TARGET)</span>.o</span><br><span class="line"></span><br><span class="line"><span class="section">build: kernel_modules</span></span><br><span class="line"><span class="section">kernel_modules:</span></span><br><span class="line">	<span class="variable">$(MAKE)</span> -C <span class="variable">$(KERNELDIR)</span> M=<span class="variable">$(CURRENT_PATH)</span> modules ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-</span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">	<span class="variable">$(MAKE)</span> -C <span class="variable">$(KERNELDIR)</span> M=<span class="variable">$(CURRENT_PATH)</span> clean</span><br><span class="line"></span><br><span class="line"><span class="section">cp:</span></span><br><span class="line">	cp /mnt/hgfs/share/imx6ull/my_drivers/beep/* ./ -rf</span><br><span class="line"></span><br><span class="line"><span class="section">rootfs:</span></span><br><span class="line">	cp ./beep.ko /home/mcli/linux/nfs/rootfs/ -rf</span><br></pre></td></tr></table></figure>
+
+<p>应用程序main.c</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/stat.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> fd = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">int</span> ret = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">char</span> *filename;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">char</span> databuf[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(argc != <span class="number">3</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"usage: ./main /dev/xxx x\r\n"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	filename = argv[<span class="number">1</span>];	</span><br><span class="line">	fd = <span class="built_in">open</span>(argv[<span class="number">1</span>], O_RDWR);</span><br><span class="line">	<span class="keyword">if</span>(fd &lt; <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"open %s fail \r\n"</span>, argv[<span class="number">1</span>]);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	databuf[<span class="number">0</span>] = atoi(argv[<span class="number">2</span>]); <span class="comment">/* 要执行的操作：打开或关闭 */</span></span><br><span class="line">	</span><br><span class="line">	ret = <span class="built_in">write</span>(fd, databuf, <span class="keyword">sizeof</span>(databuf));</span><br><span class="line">	<span class="keyword">if</span>(ret &lt; <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"write fail\r\n"</span>);</span><br><span class="line">		<span class="built_in">close</span>(fd);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">close</span>(fd);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
       
 
@@ -204,6 +233,25 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">imx6ull</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">char_device</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -254,7 +302,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/04/08/test/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/02/01/imx6ull-beep-driver/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -277,11 +325,6 @@
       </div>
     </a>
   
-  
-    <a href="/2020/04/05/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
-      <i class="icon-circle-right"></i>
-    </a>
   
 </nav>
 
@@ -403,6 +446,30 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">imx6ull</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">char_device</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">stm32</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">fft</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">音乐频谱</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
